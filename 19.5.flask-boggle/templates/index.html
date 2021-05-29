@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Boogle{% endblock%}
+{% block content %}
+<header class="header">
+    <h1>Boogle Game</h1>
+</header> 
+    <div class="game_area">
+        <div class="basics">
+            <h4 class="info">Best Score: <span id="bestScore">{{session['bestScore']}}</span></h4>
+            <h4 class="info">You played <span id="total_games">{{session['games']}}</span> games</h4>
+        </div>
+    </div>
+    <div class="main">
+        <div class="board">
+            {% for row in session['board'] %}
+                {% for val in row %}
+                <div class="cell">{{val}}</div>
+                {% endfor%}
+            {% endfor %}
+        </div>
+    </div> <br>
+    <div class="header">
+        <h2>You have <span id="timer"> 60</span> seconds</h2>
+        <form id="forms">
+            <input id="inputs" type="text" name="user_words" placeholder="enter a word" autocomplete="off">
+            <button class="btn" id="submit_btn">Submit</button>
+        </form>
+        <div id="player-words">
+        </div>
+    </div>
+    <div class="game_area">
+        <div class="basics">
+            <h4 class="info">Your Score: <span id="score"></span></h4>
+        </div>
+        <div class="msg">
+            <h2 id="msg"></h2>
+        </div>
+    </div>
+{% endblock %}
