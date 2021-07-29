@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Tags{% endblock %}
+{% block content %}
+<header class="header">
+  <h2 class="text-info p-3 mb-2">Tags</h2>
+</header>
+<ul class="list-group list-group-flush p-3 mb-2">
+  {% for tag in tags %}
+    <li class="list-group-item list-group-item-info"><a href="/tags/{{ tag.id }}">{{ tag.name }}</a></li>
+  {% endfor %}
+</ul>
+<div class="p-3 mb-2">
+  <button type="submit" class="btn btn-outline-warning"> <a class="text-secondary" href="/tags/new">Add Tag</a></button>
+</div>
+{% endblock %}
