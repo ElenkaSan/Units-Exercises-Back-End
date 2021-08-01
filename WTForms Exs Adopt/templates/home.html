@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %} Adoption Agency {% endblock%}
+{% block content %}
+<div class="display-4 text-center text-success">
+  {% for msg in get_flashed_messages()%}
+    <p>
+      {{msg}}
+    </p>
+  {% endfor %}
+</div>
+  <header class="header">
+    <h2 class="display-2 text-center text-danger text-decoration-underline">Best Pets</h2>    
+      <div class="p-3 mb-2">
+        <a class="text-light btn btn-danger btn-lg m-4" href="/add"> Add a Pet </a>
+      </div>
+  </header>
+  <div class = "container-xxl">
+    <div class="row pets-listing">
+      {% for pet in pets %}
+        <div class="col-3 card border-primary m-2 p-2 bg-transparent">
+          <img class="card-img" src="{{pet.photo_url}}" alt="">
+          <div class="card-body">
+            <h4 class="name card-title">My name is {{pet.name}} (Age: {{pet.age}})</h4>
+            <h5 class="info">I'm a cute {{pet.species}} / Available: {{pet.available}}</h5>
+            <p class="notes card-text">About me: {{pet.notes}}</p>
+            <a  class="btn btn-warning btn-sm" href="/{{pet.id}}"> Edit Pet</a>
+          </div>
+        </div>
+     {% else %}
+     <div class="col-12">
+       <h2 class= "text-primary"> No pets yet! </h2></div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
