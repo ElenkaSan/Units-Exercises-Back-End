@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} {% endblock %}
+{% block content %}
+<header class="header">
+  <h2 class="m-4 text-info">User Profile</h2>
+</header>
+  <div class ="p-2 m-4">
+        <h4>Username: {{user.username}}</h4>
+        <h4>{{user.email}} {{user.last_name}} <br>{{user.first_name}}</h4>
+        <br>
+     <h4><a class="btn-white text-success" href="/users/{{user.username}}/feedback/add">Add Feedback</a></h4> 
+    <br>
+  </div>
+  <h2 class="text-info p-2 m-4"> Feedback: </h2>
+   {% for post in posts %}
+    <div  class ="p-2 m-4">
+        <div class="post" data-id="{{post.id}}">
+           <h4>{{post.title}}</h4>
+           <p>{{post.content}}</p>
+            <div class="btn-box">
+             {% if session['username'] == post.username %}
+               <form action="/feedback/{{post.id}}/delete" method="POST">
+                 <button class="btn btn-sm btn-outline-info" formmethod="GET" formaction="/feedback/{{post.id}}/update">EDIT</button>
+                 <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+               </form>
+             {% endif %}
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html'  %}
+{% block title %} {% endblock %}
+{% block content %}
+<h1 class="text-uppercase text-warning">Flask Feedback</h1>
+  {% for post in posts %}
+   <div class="post" data-id="{{post.id}}">
+    <div class="card my-4">
+     <div class="card-body">
+      <h5 class="card-title text-info">
+        {{post.title}} 
+        {% if session['username'] == post.username %}
+        <form action="/feedback/{{post.id}}/delete" method="POST">
+          <button class="btn btn-sm btn-warning" formmethod="GET" formaction="/feedback/{{post.id}}/update">EDIT</button>
+          <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+        </form>
+        {% endif %}
+      </h5>
+       <h6 class="card-subtitle mb-2 text-muted">Date goes here</h6>
+       <p class="card-text">
+        {{post.content}}
+      </p>
+    </div>
+  </div>
+  {%  endfor %}
+</div>
+{% endblock %}
